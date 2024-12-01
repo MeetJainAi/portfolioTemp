@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 100 255 218;
+    --color-secondary: 10 25 47;
+    --color-accent: 255 99 195;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: rgb(var(--color-secondary));
+  }
+
+  body {
+    @apply text-gray-100;
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-secondary)) 0%,
+      rgb(17, 34, 64) 100%
+    );
+  }
+}
+
+@layer components {
+  .neural-card {
+    @apply relative bg-opacity-10 bg-white backdrop-blur-lg rounded-xl border border-primary/20;
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+  }
+
+  .neural-border {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute -inset-[1px] bg-gradient-to-r from-primary via-accent to-primary rounded-xl opacity-50;
+      animation: border-flow 8s linear infinite;
+    }
+  }
+
+  .cyber-text {
+    @apply font-mono text-transparent bg-clip-text;
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--color-primary)) 0%,
+      rgb(var(--color-accent)) 50%,
+      rgb(var(--color-primary)) 100%
+    );
+    background-size: 200% auto;
+    animation: text-shine 3s linear infinite;
+  }
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes text-shine {
+  to { background-position: 200% center; }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
